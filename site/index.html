@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gridline Studio — Monoline Icon Sets</title>
+<meta name="description" content="Gridline Studio designs monoline icon sets and presentation graphics. One stroke weight, round caps, readable at 16 px.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Fraunces:ital,opsz,wght@1,9..144,400&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FAFAF6;
+    --ink: #141414;
+    --line: rgba(20, 20, 20, 0.16);
+    --icon: #141414;
+    --accent: #1D3FEB;
+    --mono: "Spline Sans Mono", monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Archivo", sans-serif;
+    font-weight: 500;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .frame { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- header ---------- */
+  header {
+    border-bottom: 1px solid var(--line);
+    position: sticky; top: 0; z-index: 10;
+    background: var(--paper);
+  }
+  .header-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 0;
+  }
+  .wordmark { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); }
+  .wordmark svg { display: block; }
+  .wordmark span {
+    font-weight: 800; letter-spacing: 0.14em; font-size: 14px; text-transform: uppercase;
+  }
+  .header-tag { font-family: var(--mono); font-size: 12px; color: rgba(20,20,20,0.55); }
+  @media (max-width: 560px) { .header-tag { display: none; } }
+
+  /* ---------- hero ---------- */
+  .hero {
+    position: relative;
+    padding: 96px 0 72px;
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 56px 56px;
+    opacity: 0.35;
+    pointer-events: none;
+  }
+  .hero::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(105deg, var(--paper) 32%, transparent 60%),
+                linear-gradient(to bottom, transparent 40%, var(--paper) 92%);
+    pointer-events: none;
+  }
+  .hero .frame { position: relative; z-index: 1; }
+  .hero h1 {
+    position: relative;
+    font-size: clamp(40px, 7vw, 76px);
+    font-weight: 800;
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    max-width: 14ch;
+    animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  .hero h1 em {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+  .hero p {
+    position: relative;
+    margin-top: 28px;
+    max-width: 52ch;
+    font-size: 17px;
+    color: rgba(20,20,20,0.72);
+    animation: rise 0.7s 0.12s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  .hero-meta {
+    position: relative;
+    margin-top: 40px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: rgba(20,20,20,0.55);
+    display: flex; gap: 28px; flex-wrap: wrap;
+    animation: rise 0.7s 0.22s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ---------- swatch bar ---------- */
+  .toolbar {
+    border-bottom: 1px solid var(--line);
+    padding: 18px 0;
+  }
+  .toolbar-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .toolbar-label { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; color: rgba(20,20,20,0.55); }
+  .swatches { display: flex; gap: 10px; }
+  .swatch {
+    width: 26px; height: 26px; border-radius: 50%;
+    border: 1px solid var(--line);
+    cursor: pointer; padding: 0;
+    transition: transform 0.15s ease;
+    outline-offset: 3px;
+  }
+  .swatch:hover { transform: scale(1.15); }
+  .swatch[aria-pressed="true"] { outline: 2px solid var(--ink); }
+
+  /* ---------- sets ---------- */
+  .set { border-bottom: 1px solid var(--line); }
+  .set-grid {
+    display: grid;
+    grid-template-columns: 220px repeat(3, 1fr);
+  }
+  .set-head {
+    padding: 36px 24px 36px 0;
+    border-right: 1px solid var(--line);
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .set-index { font-family: var(--mono); font-size: 12px; color: rgba(20,20,20,0.5); }
+  .set-name { font-size: 22px; font-weight: 800; letter-spacing: -0.01em; }
+  .tile {
+    padding: 36px 16px 28px;
+    display: flex; flex-direction: column; align-items: center; gap: 20px;
+    border-right: 1px solid var(--line);
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .tile:last-child { border-right: none; }
+  .tile svg { width: 88px; height: 88px; color: var(--icon); transition: color 0.2s ease, transform 0.2s ease; }
+  .tile:hover { background: var(--ink); }
+  .tile:hover svg { color: var(--paper); transform: scale(1.06); }
+  .tile:hover .tile-name { color: rgba(250,250,246,0.7); }
+  .tile-name { font-family: var(--mono); font-size: 12px; color: rgba(20,20,20,0.55); transition: color 0.2s ease; }
+  @media (max-width: 800px) {
+    .set-grid { grid-template-columns: 1fr 1fr; }
+    .set-head { grid-column: 1 / -1; border-right: none; border-bottom: 1px solid var(--line); padding: 24px 0; flex-direction: row; align-items: baseline; gap: 16px; }
+    .tile:nth-child(odd) { border-right: none; }
+    .tile { border-bottom: 1px solid var(--line); }
+    .set .tile:nth-last-child(-n+2) { border-bottom: none; }
+  }
+
+  /* ---------- scale strip ---------- */
+  .scale { border-bottom: 1px solid var(--line); padding: 56px 0; }
+  .scale-row { display: flex; align-items: flex-end; gap: 48px; flex-wrap: wrap; }
+  .scale-item { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .scale-item svg { color: var(--icon); }
+  .scale-item span { font-family: var(--mono); font-size: 12px; color: rgba(20,20,20,0.5); }
+  .scale-copy { max-width: 30ch; font-size: 17px; font-weight: 600; line-height: 1.4; margin-left: auto; }
+  @media (max-width: 700px) { .scale-copy { margin-left: 0; } }
+
+  /* ---------- principles ---------- */
+  .principles { padding: 72px 0; border-bottom: 1px solid var(--line); }
+  .principles-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
+  }
+  @media (max-width: 800px) { .principles-grid { grid-template-columns: 1fr 1fr; } }
+  .principle .p-index { font-family: var(--mono); font-size: 12px; color: var(--accent); }
+  .principle h3 { margin-top: 10px; font-size: 16px; font-weight: 800; }
+  .principle p { margin-top: 8px; font-size: 14px; color: rgba(20,20,20,0.65); }
+
+  /* ---------- footer ---------- */
+  footer { padding: 40px 0 56px; }
+  .footer-row { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: baseline; }
+  .footer-row .fm { font-family: var(--mono); font-size: 12px; color: rgba(20,20,20,0.5); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="frame header-row">
+    <a class="wordmark" href="#">
+      <svg width="26" height="26" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="16" y="16" width="68" height="68" rx="10" stroke="currentColor" stroke-width="8"/>
+        <path d="M50 16 V84 M16 50 H84" stroke="currentColor" stroke-width="8"/>
+      </svg>
+      <span>Gridline Studio</span>
+    </a>
+    <div class="header-tag">icon sets · presentation graphics</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="frame">
+    <h1>Monoline icons, <em>drawn</em> on a 100&thinsp;×&thinsp;100 grid.</h1>
+    <p>Gridline Studio designs icon sets for slides, documents and interfaces. Every set is built to one system — a single stroke weight, rounded caps, simple geometry — so thirty icons read like one family, from a title slide down to 16&nbsp;px.</p>
+    <div class="hero-meta">
+      <span>EST. 2026</span>
+      <span>SVG + PNG</span>
+      <span>UK / DE</span>
+    </div>
+  </div>
+</section>
+
+<div class="toolbar">
+  <div class="frame toolbar-row">
+    <span class="toolbar-label">Every icon inherits its colour from one token — try it:</span>
+    <div class="swatches" role="group" aria-label="Recolour icons">
+      <button class="swatch" style="background:#141414" data-color="#141414" aria-pressed="true" aria-label="Ink"></button>
+      <button class="swatch" style="background:#1D3FEB" data-color="#1D3FEB" aria-pressed="false" aria-label="Blue"></button>
+      <button class="swatch" style="background:#E4572E" data-color="#E4572E" aria-pressed="false" aria-label="Vermilion"></button>
+      <button class="swatch" style="background:#1F7A5C" data-color="#1F7A5C" aria-pressed="false" aria-label="Forest"></button>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <section class="set">
+    <div class="frame set-grid">
+      <div class="set-head"><span class="set-index">01</span><span class="set-name">Finance</span></div>
+      <div class="tile">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Growth chart">
+          <path d="M20 22 V78 H80" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M32 62 L46 48 L56 56 L72 38" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M62 36 H73 V47" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="tile-name">growth-chart</span>
+      </div>
+      <div class="tile">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Banknote">
+          <rect x="16" y="32" width="68" height="36" rx="7" stroke="currentColor" stroke-width="6" stroke-linejoin="round"/>
+          <circle cx="50" cy="50" r="9" stroke="currentColor" stroke-width="6"/>
+          <path d="M28 50 h0.5" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+          <path d="M72 50 h0.5" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+        <span class="tile-name">banknote</span>
+      </div>
+      <div class="tile">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Coin">
+          <circle cx="50" cy="50" r="30" stroke="currentColor" stroke-width="6"/>
+          <path d="M58 41 a8 7 0 0 0 -16 0 c0 9 16 5 16 14 a8 7 0 0 1 -16 0" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+          <path d="M50 28 V34 M50 62 V68" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+        <span class="tile-name">coin</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="set">
+    <div class="frame set-grid">
+      <div class="set-head"><span class="set-index">02</span><span class="set-name">Education</span></div>
+      <div class="tile">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Graduation cap">
+          <path d="M50 24 L84 40 L50 56 L16 40 Z" stroke="currentColor" stroke-width="6" stroke-linejoin="round"/>
+          <path d="M32 48 V62 c0 6 8 11 18 11 s18 -5 18 -11 V48" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M84 40 V58" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+        <span class="tile-name">graduation-cap</span>
+      </div>
+      <div class="tile">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Open book">
+          <path d="M50 34 C43 27 30 26 20 30 V68 C30 64 43 65 50 72 C57 65 70 64 80 68 V30 C70 26 57 27 50 34 Z" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M50 34 V72" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+        <span class="tile-name">open-book</span>
+      </div>
+      <div class="tile">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pencil">
+          <path d="M40 20 H60 V60 L50 78 L40 60 Z" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M40 32 H60" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+          <path d="M40 60 H60" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+        <span class="tile-name">pencil</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="set">
+    <div class="frame set-grid">
+      <div class="set-head"><span class="set-index">03</span><span class="set-name">Technology</span></div>
+      <div class="tile">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CPU chip">
+          <rect x="30" y="30" width="40" height="40" rx="6" stroke="currentColor" stroke-width="6" stroke-linejoin="round"/>
+          <rect x="44" y="44" width="12" height="12" stroke="currentColor" stroke-width="6" stroke-linejoin="round"/>
+          <path d="M38 30 V20 M50 30 V20 M62 30 V20 M38 80 V70 M50 80 V70 M62 80 V70 M30 38 H20 M30 50 H20 M30 62 H20 M80 38 H70 M80 50 H70 M80 62 H70" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+        <span class="tile-name">cpu-chip</span>
+      </div>
+      <div class="tile">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Code window">
+          <rect x="16" y="26" width="68" height="48" rx="8" stroke="currentColor" stroke-width="6" stroke-linejoin="round"/>
+          <path d="M16 38 H84" stroke="currentColor" stroke-width="6"/>
+          <path d="M38 49 L30 56 L38 63" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M62 49 L70 56 L62 63" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="tile-name">code-window</span>
+      </div>
+      <div class="tile">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cloud">
+          <path d="M32 70 a13 13 0 0 1 -1 -26 a17 17 0 0 1 33 -5 a13 13 0 0 1 4 31 Z" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="tile-name">cloud</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="set">
+    <div class="frame set-grid">
+      <div class="set-head"><span class="set-index">04</span><span class="set-name">Travel</span></div>
+      <div class="tile">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Globe">
+          <circle cx="50" cy="50" r="30" stroke="currentColor" stroke-width="6"/>
+          <ellipse cx="50" cy="50" rx="13" ry="30" stroke="currentColor" stroke-width="6"/>
+          <path d="M22 50 H78" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+        <span class="tile-name">globe</span>
+      </div>
+      <div class="tile">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Suitcase">
+          <rect x="26" y="38" width="48" height="38" rx="8" stroke="currentColor" stroke-width="6" stroke-linejoin="round"/>
+          <path d="M40 38 V30 a6 6 0 0 1 6 -6 h8 a6 6 0 0 1 6 6 V38" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M38 46 V68 M62 46 V68" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+        <span class="tile-name">suitcase</span>
+      </div>
+      <div class="tile">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Map pin">
+          <path d="M50 20 a19 19 0 0 1 19 19 c0 14 -19 37 -19 37 s-19 -23 -19 -37 a19 19 0 0 1 19 -19 Z" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="50" cy="39" r="7" stroke="currentColor" stroke-width="6"/>
+        </svg>
+        <span class="tile-name">map-pin</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="set">
+    <div class="frame set-grid">
+      <div class="set-head"><span class="set-index">05</span><span class="set-name">Contract</span></div>
+      <div class="tile">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Signed document">
+          <path d="M60 14 H32 a6 6 0 0 0 -6 6 v60 a6 6 0 0 0 6 6 h36 a6 6 0 0 0 6 -6 V28 Z" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M60 14 v8 a6 6 0 0 0 6 6 h8" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M36 42 h28 M36 54 h28 M35 70 q5 -10 10 0 q5 10 10 0 q5 -10 10 0" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="tile-name">signed-document</span>
+      </div>
+      <div class="tile">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Signing pen">
+          <path d="M32 62 L64 30 a7 7 0 0 1 10 10 L42 72 l-14 4 z" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M14 84 h48" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="tile-name">signing-pen</span>
+      </div>
+      <div class="tile">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sealed document">
+          <path d="M46 78 H30 a8 8 0 0 1 -8 -8 V22 a8 8 0 0 1 8 -8 h28 a8 8 0 0 1 8 8 v24" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M32 30 h24 M32 42 h24" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="64" cy="68" r="14" stroke="currentColor" stroke-width="6"/>
+          <path d="M58 68 l4 4 l8 -8" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="tile-name">sealed-document</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="set">
+    <div class="frame set-grid">
+      <div class="set-head"><span class="set-index">06</span><span class="set-name">Healthcare</span></div>
+      <div class="tile">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hospital building">
+          <rect x="22" y="28" width="56" height="56" rx="6" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M44 84 V74 a6 6 0 0 1 12 0 V84" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M50 40 v18 M41 49 h18" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="tile-name">building-cross</span>
+      </div>
+      <div class="tile">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Medical cross badge">
+          <circle cx="50" cy="50" r="36" stroke="currentColor" stroke-width="6"/>
+          <path d="M42 26 h16 v16 h16 v16 h-16 v16 h-16 v-16 h-16 v-16 h16 z" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="tile-name">cross-badge</span>
+      </div>
+      <div class="tile">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="First aid kit">
+          <rect x="16" y="32" width="68" height="48" rx="8" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M38 32 v-4 a8 8 0 0 1 8-8 h8 a8 8 0 0 1 8 8 v4" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M50 48 v16 M42 56 h16" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="tile-name">first-aid-kit</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="scale">
+    <div class="frame scale-row">
+      <div class="scale-item">
+        <svg width="16" height="16" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="50" cy="50" r="30" stroke="currentColor" stroke-width="6"/><ellipse cx="50" cy="50" rx="13" ry="30" stroke="currentColor" stroke-width="6"/><path d="M22 50 H78" stroke="currentColor" stroke-width="6" stroke-linecap="round"/></svg>
+        <span>16</span>
+      </div>
+      <div class="scale-item">
+        <svg width="24" height="24" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="50" cy="50" r="30" stroke="currentColor" stroke-width="6"/><ellipse cx="50" cy="50" rx="13" ry="30" stroke="currentColor" stroke-width="6"/><path d="M22 50 H78" stroke="currentColor" stroke-width="6" stroke-linecap="round"/></svg>
+        <span>24</span>
+      </div>
+      <div class="scale-item">
+        <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="50" cy="50" r="30" stroke="currentColor" stroke-width="6"/><ellipse cx="50" cy="50" rx="13" ry="30" stroke="currentColor" stroke-width="6"/><path d="M22 50 H78" stroke="currentColor" stroke-width="6" stroke-linecap="round"/></svg>
+        <span>40</span>
+      </div>
+      <div class="scale-item">
+        <svg width="72" height="72" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="50" cy="50" r="30" stroke="currentColor" stroke-width="6"/><ellipse cx="50" cy="50" rx="13" ry="30" stroke="currentColor" stroke-width="6"/><path d="M22 50 H78" stroke="currentColor" stroke-width="6" stroke-linecap="round"/></svg>
+        <span>72</span>
+      </div>
+      <p class="scale-copy">Drawn to survive the projector test — legible in a slide footer, crisp on a title page.</p>
+    </div>
+  </section>
+
+  <section class="principles">
+    <div class="frame principles-grid">
+      <div class="principle">
+        <span class="p-index">A</span>
+        <h3>One stroke weight</h3>
+        <p>6 units on a 100-unit grid, everywhere. No hairlines hiding next to heavy outlines.</p>
+      </div>
+      <div class="principle">
+        <span class="p-index">B</span>
+        <h3>Round caps &amp; joins</h3>
+        <p>Every terminal and corner is rounded, so sets feel warm rather than technical.</p>
+      </div>
+      <div class="principle">
+        <span class="p-index">C</span>
+        <h3>76 × 76 safe area</h3>
+        <p>Artwork stays inside a shared optical boundary — icons align on slides without nudging.</p>
+      </div>
+      <div class="principle">
+        <span class="p-index">D</span>
+        <h3>One colour token</h3>
+        <p>Strokes inherit <code>currentColor</code>. Rebrand an entire deck by changing a single value.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="frame footer-row">
+    <span class="fm">© 2026 Gridline Studio · CF Account ID #28764336</span>
+    <span class="fm">Icon sets &amp; presentation graphics — available on marketplaces soon</span>
+  </div>
+</footer>
+
+<!-- marketplace-verification -->
+
+<script>
+  const swatches = document.querySelectorAll(".swatch");
+  swatches.forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.documentElement.style.setProperty("--icon", btn.dataset.color);
+      swatches.forEach(b => b.setAttribute("aria-pressed", String(b === btn)));
+    });
+  });
+</script>
+
+</body>
+</html>
